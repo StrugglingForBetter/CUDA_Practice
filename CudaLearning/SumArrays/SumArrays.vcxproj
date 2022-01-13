@@ -142,6 +142,9 @@
   <ItemGroup>
     <CudaCompile Include="sum_arrays.cu" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\freshman.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 11.1.targets" />
