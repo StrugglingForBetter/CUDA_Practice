@@ -82,6 +82,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>E:\Learning\CUDA_learning\CUDA_Practice\CudaLearning\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -141,9 +142,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <CudaCompile Include="sum_arrays.cu" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\include\freshman.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

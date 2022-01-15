@@ -4,6 +4,8 @@
 #include <malloc.h>
 #include <string.h>
 
+#include <freshman.h>
+
 void sumArrays(float* a, float* b, float* res, const int size) {
 	for (int i = 0; i < size; i += 4) {
 		res[i] = a[i] + b[i];
@@ -36,5 +38,33 @@ int main(int argc, char** argv) {
 
 	float* a_d, * b_d, * res_d;
 	CHECK(cudaMalloc((float**)&a_d, nByte));
+	CHECK(cudaMalloc((float**)&b_d, nByte));
+	CHECK(cudaMalloc((float**)&res_d, nByte));
+
+	initialData(a_h, nElem);
+	initialData(b_h, nElem);
+
+	CHECK(cudaMemcpy(a_d, a_h, nByte, cudaMemcpyHostToDevice));
+	CHECK(cudaMemcpy(b_d, b_h, nByte, cudaMemcpyHostToDevice));
+
+	dim3 block(1024);
+	dim3 grid(nElem / block.x);
+	sumArraysGPU << <grid, block >> > (a_d, b_d, res_d);
+	printf("Execution configuration<<<%d,%d>>>\n", grid.x, block.x);
+
+	CHECK(cudaMemcpy(res_from_gpu_h, res_d, nByte, cudaMemcpyDeviceToHost));
+	sumArrays(a_h, b_h, res_h, nElem);
+
+	checkResult(res_h, res_from_gpu_h, nElem);
+	cudaFree(a_d);
+	cudaFree(b_d);
+	cudaFree(res_d);
+
+	free(a_h);
+	free(b_h);
+	free(res_h);
+	free(res_from_gpu_h);
+
+	return 0;
 
 }
