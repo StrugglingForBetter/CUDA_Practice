@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 	printf("	CUDA Driver Version / Runtime Version	%d.%d / %d.%d\n",
 		driverVersion / 1000, (driverVersion % 100) / 10, runtimeVersion / 1000, (runtimeVersion % 100) / 10);
 	printf("	Total amount of global memory:			%.2f GBytes (%llu bytes)\n",
-		(float)deviceProp.totalGlobalMem / pow(1024.0, 3), deviceProp.totalGlobalMem);
+		(float)deviceProp.totalGlobalMem / pow(1024.0, 3.0), deviceProp.totalGlobalMem);
 	printf("	GPU Clock rate:							%.0f MHZ (%0.2f GHZ) \n",
 		deviceProp.clockRate * 1e-3f, deviceProp.clockRate * 1e-6f);
 	printf("	Memory Bus width:						%d-bits\n", deviceProp.memoryBusWidth);
@@ -56,5 +56,14 @@ int main(int argc, char** argv) {
 	printf("	Maximum size of each dimension of a grid:		%d x %d x %d \n",
 		deviceProp.maxGridSize[0], deviceProp.maxGridSize[1], deviceProp.maxGridSize[2]);
 	printf("	Maximum memory pitch							%lu bytes \n", deviceProp.memPitch);
+	printf("---------------------------------------------------------------\n");
+	printf("Total amount of constant memory:					%4.2f KB\n", deviceProp.totalConstMem / 1024.0);
+	printf("Total amount of shared memory per block:			%4.2f KB\n", deviceProp.sharedMemPerBlock / 1024.0);
+	printf("Total number of registers available per block:		%d\n", deviceProp.regsPerBlock);
+	printf("Warp size											%d\n", deviceProp.warpSize);
+	printf("Maximum number of threads per block:				%d\n", deviceProp.maxThreadsPerBlock);
+	printf("Maximum number of threads per multiprocessor:		%d\n", deviceProp.maxThreadsPerMultiProcessor);
+	printf("Maximum number of warps per multiprocessor:			%d\n", deviceProp.maxThreadsPerMultiProcessor / 32);
+	return EXIT_SUCCESS;
 
 }

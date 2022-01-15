@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="device_info.cu">
+    <CudaCompile Include="device_info.cu">
       <Filter>源文件</Filter>
-    </None>
+    </CudaCompile>
   </ItemGroup>
 </Project>
