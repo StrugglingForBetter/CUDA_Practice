@@ -1,0 +1,12 @@
+﻿  Compiling CUDA source file reduce_unrolling.cu...
+  
+  E:\Learning\CUDA_learning\CUDA_Practice\CudaLearning\ReduceUnrolling>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\bin\HostX86\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DNDEBUG -D_CONSOLE -D_UNICODE -DUNICODE -Xcompiler "/EHsc /W3 /nologo /O2 /Fdx64\Release\vc142.pdb /FS   /MD " -o x64\Release\reduce_unrolling.cu.obj "E:\Learning\CUDA_learning\CUDA_Practice\CudaLearning\ReduceUnrolling\reduce_unrolling.cu" 
+E:/Learning/CUDA_learning/CUDA_Practice/CudaLearning/ReduceUnrolling/reduce_unrolling.cu(369): error : expression must have integral or unscoped enum type
+  
+E:/Learning/CUDA_learning/CUDA_Practice/CudaLearning/ReduceUnrolling/reduce_unrolling.cu(369): error : expected an expression
+  
+E:/Learning/CUDA_learning/CUDA_Practice/CudaLearning/ReduceUnrolling/reduce_unrolling.cu(312): warning : variable "bResult" was declared but never referenced
+  
+  2 errors detected in the compilation of "E:/Learning/CUDA_learning/CUDA_Practice/CudaLearning/ReduceUnrolling/reduce_unrolling.cu".
+  reduce_unrolling.cu
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations\CUDA 11.1.targets(785,9): error MSB3721: 命令“"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\bin\HostX86\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DNDEBUG -D_CONSOLE -D_UNICODE -DUNICODE -Xcompiler "/EHsc /W3 /nologo /O2 /Fdx64\Release\vc142.pdb /FS   /MD " -o x64\Release\reduce_unrolling.cu.obj "E:\Learning\CUDA_learning\CUDA_Practice\CudaLearning\ReduceUnrolling\reduce_unrolling.cu"”已退出，返回代码为 1。

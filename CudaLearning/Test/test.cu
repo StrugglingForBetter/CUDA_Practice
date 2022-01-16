@@ -1,46 +1,30 @@
 #include <cuda_runtime.h>
 #include <stdio.h>
-#include <freshman.h>
 #include <device_launch_parameters.h>
 
-__global__ void printThreadIndex(float* A, const int nx, const int ny) {
-
-	int ix = threadIdx.x + blockIdx.x * blockDim.x;
-	int iy = threadIdx.y + blockIdx.y * blockDim.y;
-
-	unsigned int idx = iy * nx + ix;
-	printf("thread_id(%d, %d) block_id(%d, %d) coordinate(%d, %d)"
-		"global index %2d ival %2d\n", threadIdx.x, threadIdx.y,
-		blockIdx.x, blockIdx.y, ix, iy, idx, A[idx]);
+__global__ void nesthelloworld(int iSize, int iDepth)
+{
+    unsigned int tid = threadIdx.x;
+    printf("depth : %d blockIdx: %d,threadIdx: %d\n", iDepth, blockIdx.x, threadIdx.x);
+    if (iSize == 1)
+        return;
+    int nthread = (iSize >> 1);
+    if (tid == 0 && nthread > 0)
+    {
+        nesthelloworld << <1, nthread >> > (nthread, ++iDepth);
+        printf("-----------> nested execution depth: %d\n", iDepth);
+    }
 
 }
 
-int main(int argc, char** argv) {
-
-	initDevice(0);
-	int nx = 8, ny = 6;
-	int nxy = nx * ny;
-	int nBytes = nxy * sizeof(float);
-
-	float* A_host = (float*)malloc(nBytes);
-	initialData(A_host, nxy);
-	printMatrix(A_host, nx, ny);
-
-	float* A_dev = NULL;
-	CHECK(cudaMalloc((void**)&A_dev, nBytes));
-
-	cudaMemcpy(A_dev, A_host, nBytes, cudaMemcpyHostToDevice);
-
-	dim3 block(4, 2);
-	dim3 grid((nx - 1) / block.x + 1, (ny - 1) / block.y + 1);
-
-	printThreadIndex << <grid, block >> > (A_dev, nx, ny);
-
-	CHECK(cudaDeviceSynchronize());
-	cudaFree(A_dev);
-	free(A_host);
-
-	cudaDeviceReset();
-	return 0;
-
+int main(int argc, char* argv[])
+{
+    int size = 64;
+    int block_x = 2;
+    dim3 block(block_x, 1);
+    dim3 grid((size - 1) / block.x + 1, 1);
+    nesthelloworld << <grid, block >> > (size, 0);
+    cudaGetLastError();
+    cudaDeviceReset();
+    return 0;
 }
