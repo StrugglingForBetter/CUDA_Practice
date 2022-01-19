@@ -88,3 +88,200 @@ __global__ void reduceGmem(int* g_idata, int* g_odata, unsigned int n) {
 	if (tid == 0)
 		g_odata[blockIdx.x] = idata[0];
 }
+
+__global__ void reduceSmem(int* g_idata, int* g_odata, unsigned int n) {
+	// set thread ID
+	__shared__ int smem[DIM];
+	unsigned int tid = threadIdx.x;
+	unsigned int idx = blockDim.x * blockIdx.x + threadIdx.x;
+
+	// boundary check
+	if (tid >= n)
+		return;
+
+	int* idata = g_idata + blockIdx.x * blockDim.x;
+
+	smem[tid] = idata[tid];
+
+	// in-place reduction in global memory
+	if (blockDim.x >= 1024 && tid < 512)
+		smem[tid] += smem[tid + 512];
+	__syncthreads();
+	if (blockDim.x >= 512 && tid < 256)
+		smem[tid] += smem[tid + 256];
+	__syncthreads();
+	if (blockDim.x >= 256 && tid < 128)
+		smem[tid] += smem[tid + 128];
+	__syncthreads();
+	if (blockDim.x >= 128 && tid < 64)
+		smem[tid] += smem[tid + 64];
+	__syncthreads();
+
+	// write result for this block to global mem
+	if (tid < 32) {
+		volatile int* vsmem = smem;
+		vsmem[tid] += vsmem[tid + 32];
+		vsmem[tid] += vsmem[tid + 16];
+		vsmem[tid] += vsmem[tid + 8];
+		vsmem[tid] += vsmem[tid + 4];
+		vsmem[tid] += vsmem[tid + 2];
+		vsmem[tid] += vsmem[tid + 1];
+	}
+
+	if (tid == 0)
+		g_odata[blockIdx.x] = smem[0];
+}
+
+__global__ void reduceUnroll4Smem(int* g_idata, int* g_odata, unsigned int n) {
+	// set thread ID
+	__shared__ int smem[DIM];
+	unsigned int tid = threadIdx.x;
+	unsigned int idx = blockDim.x * blockIdx.x * 4 + threadIdx.x;
+
+	// boundary check
+	if (tid >= n)
+		return;
+	int tempSum = 0;
+	if (idx + 3 * blockDim.x <= n) {
+		int a1 = g_idata[idx];
+		int a2 = g_idata[idx + blockDim.x];
+		int a3 = g_idata[idx + 2 * blockDim.x];
+		int a4 = g_idata[idx + 3 * blockDim.x];
+		tempSum = a1 + a2 + a3 + a4;
+	}
+
+	smem[tid] = tempSum;
+	__syncthreads();
+
+	// in-place reduction in global memory
+	if (blockDim.x >= 1024 && tid < 512)
+		smem[tid] += smem[tid + 512];
+	__syncthreads();
+	if (blockDim.x >= 512 && tid < 256)
+		smem[tid] += smem[tid + 256];
+	__syncthreads();
+	if (blockDim.x >= 256 && tid < 128)
+		smem[tid] += smem[tid + 128];
+	__syncthreads();
+	if (blockDim.x >= 128 && tid < 64)
+		smem[tid] += smem[tid + 64];
+	__syncthreads();
+
+	// write result for this block to global mem
+	if (tid < 32) {
+		volatile int* vsmem = smem;
+		vsmem[tid] += vsmem[tid + 32];
+		vsmem[tid] += vsmem[tid + 16];
+		vsmem[tid] += vsmem[tid + 8];
+		vsmem[tid] += vsmem[tid + 4];
+		vsmem[tid] += vsmem[tid + 2];
+		vsmem[tid] += vsmem[tid + 1];
+	}
+
+	if (tid == 0)
+		g_odata[blockIdx.x] = smem[0];
+}
+
+int main(int argc, char** argv) {
+	
+	initDevice(0);
+
+	bool bResult = false;
+
+	int size = 1 << 24;
+	printf("	with array size %d \n", size);
+
+	// execution configuration
+	int blocksize = 1024;
+	if (argc > 1) {
+		blocksize = atoi(argv[1]);
+	}
+
+	dim3 block(blocksize, 1);
+	dim3 grid((size - 1) / block.x + 1, 1);
+	printf("grid %d block %d \n", grid.x, block.x);
+
+	// allocate host memory
+	size_t bytes = size * sizeof(int);
+	int* idata_host = (int*)malloc(bytes);
+	int* odata_host = (int*)malloc(grid.x * sizeof(int));
+	int* tmp = (int*)malloc(bytes);
+
+	// initialize the array
+	initialData_int(idata_host, size);
+
+	memcpy(tmp, idata_host, bytes);
+	double iStart, iElaps;
+	int gpu_sum = 0;
+
+	// device memory
+	int* idata_dev = NULL;
+	int* odata_dev = NULL;
+	CHECK(cudaMalloc((void**)&idata_dev, bytes));
+	CHECK(cudaMalloc((void**)&odata_dev, grid.x * sizeof(int)));
+
+	// cpu reduction
+	int cpu_sum = 0;
+	iStart = cpuSecond();
+	for (int i = 0; i < size; i++)
+		cpu_sum += tmp[i];
+	iElaps = cpuSecond() - iStart;
+	printf("cpu reduce			elapsed %lf ms cpu_sum: %d \n", iElaps, cpu_sum);
+
+	// kernel 1: warmup
+	CHECK(cudaMemcpy(idata_dev, idata_host, bytes, cudaMemcpyHostToDevice));
+	CHECK(cudaDeviceSynchronize());
+	iStart = cpuSecond();
+	warmup << <grid.x / 2, block >> > (idata_dev, odata_dev, size);
+	cudaDeviceSynchronize();
+	iElaps = cpuSecond() - iStart;
+	printf("gpu warmup		elapsed %lf ms \n", iElaps);
+
+	// reduceGmem
+	CHECK(cudaMemcpy(idata_dev, idata_host, bytes, cudaMemcpyHostToDevice));
+	CHECK(cudaDeviceSynchronize());
+	iStart = cpuSecond();
+	reduceGmem << <grid.x, block >> > (idata_dev, odata_dev, size);
+	cudaDeviceSynchronize();
+	iElaps = cpuSecond() - iStart;
+	cudaMemcpy(odata_host, odata_dev, grid.x * sizeof(int), cudaMemcpyDeviceToHost);
+	gpu_sum = 0;
+	for (int i = 0; i < grid.x; i++)
+		gpu_sum += odata_host[i];
+	printf("reduceGmem		elapsed %lf ms gpu_sum: %d\n", iElaps, gpu_sum);
+
+	// reduceSmem
+	CHECK(cudaMemcpy(idata_dev, idata_host, bytes, cudaMemcpyHostToDevice));
+	CHECK(cudaDeviceSynchronize());
+	iStart = cpuSecond();
+	reduceSmem << <grid.x, block >> > (idata_dev, odata_dev, size);
+	cudaDeviceSynchronize();
+	iElaps = cpuSecond() - iStart;
+	cudaMemcpy(odata_host, odata_dev, grid.x * sizeof(int), cudaMemcpyDeviceToHost);
+	gpu_sum = 0;
+	for (int i = 0; i < grid.x; i++)
+		gpu_sum += odata_host[i];
+	printf("reduceSmem		elapsed %lf ms gpu_sum: %d\n", iElaps, gpu_sum);
+
+	// reduceUnroll4Smem
+	CHECK(cudaMemcpy(idata_dev, idata_host, bytes, cudaMemcpyHostToDevice));
+	CHECK(cudaDeviceSynchronize());
+	iStart = cpuSecond();
+	reduceSmem << <grid.x / 4, block >> > (idata_dev, odata_dev, size);
+	cudaDeviceSynchronize();
+	iElaps = cpuSecond() - iStart;
+	cudaMemcpy(odata_host, odata_dev, grid.x * sizeof(int), cudaMemcpyDeviceToHost);
+	gpu_sum = 0;
+	for (int i = 0; i < grid.x / 4; i++)
+		gpu_sum += odata_host[i];
+	printf("reduceUnroll4Smem		elapsed %lf ms gpu_sum: %d\n", iElaps, gpu_sum);
+
+	free(idata_host);
+	free(odata_host);
+	CHECK(cudaFree(idata_dev));
+	CHECK(cudaFree(odata_dev));
+	// reset device
+	cudaDeviceReset();
+	return EXIT_SUCCESS;
+}
+
