@@ -73,6 +73,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamBlock", "StreamBlock\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamDependence", "StreamDependence\StreamDependence.vcxproj", "{05B64D5C-A07F-4246-AE57-1B4834287CB8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultiAddDepth", "MultiAddDepth\MultiAddDepth.vcxproj", "{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -361,6 +363,14 @@ Global
 		{05B64D5C-A07F-4246-AE57-1B4834287CB8}.Release|x64.Build.0 = Release|x64
 		{05B64D5C-A07F-4246-AE57-1B4834287CB8}.Release|x86.ActiveCfg = Release|Win32
 		{05B64D5C-A07F-4246-AE57-1B4834287CB8}.Release|x86.Build.0 = Release|Win32
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Debug|x64.ActiveCfg = Debug|x64
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Debug|x64.Build.0 = Debug|x64
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Debug|x86.ActiveCfg = Debug|Win32
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Debug|x86.Build.0 = Debug|Win32
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Release|x64.ActiveCfg = Release|x64
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Release|x64.Build.0 = Release|x64
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Release|x86.ActiveCfg = Release|Win32
+		{8DEA8B3B-F8ED-4E71-B82C-B8FDE47A3D99}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
