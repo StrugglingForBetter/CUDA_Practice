@@ -63,6 +63,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShflTest", "ShflTest\ShflTe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReduceShfl", "ReduceShfl\ReduceShfl.vcxproj", "{DB712990-897B-4760-98F0-50E9F8E88C89}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stream", "Stream\Stream.vcxproj", "{E38AEF96-2BB0-4C75-82CA-E325E026E494}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -311,6 +313,14 @@ Global
 		{DB712990-897B-4760-98F0-50E9F8E88C89}.Release|x64.Build.0 = Release|x64
 		{DB712990-897B-4760-98F0-50E9F8E88C89}.Release|x86.ActiveCfg = Release|Win32
 		{DB712990-897B-4760-98F0-50E9F8E88C89}.Release|x86.Build.0 = Release|Win32
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Debug|x64.ActiveCfg = Debug|x64
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Debug|x64.Build.0 = Debug|x64
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Debug|x86.ActiveCfg = Debug|Win32
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Debug|x86.Build.0 = Debug|Win32
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Release|x64.ActiveCfg = Release|x64
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Release|x64.Build.0 = Release|x64
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Release|x86.ActiveCfg = Release|Win32
+		{E38AEF96-2BB0-4C75-82CA-E325E026E494}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
