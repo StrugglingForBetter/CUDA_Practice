@@ -55,4 +55,53 @@ int main(int argc, char** argv) {
 	dim3 block(512);
 	dim3 grid((nElem - 1) / block.x + 1);
 
+
+	// asynchronous calculation
+	int iElem = nElem / N_SEGMENT;
+	cudaStream_t stream[N_SEGMENT];
+	for (int i = 0; i < N_SEGMENT; i++) {
+		CHECK(cudaStreamCreate(&stream[i]));
+	}
+
+	cudaEvent_t start, stop;
+	cudaEventCreate(&start);
+	cudaEventCreate(&stop);
+	cudaEventRecord(start, 0);
+
+	for (int i = 0; i < N_SEGMENT; i++) {
+		int ioffset = i * iElem;
+		CHECK(cudaMemcpyAsync(&a_d[ioffset], &a_h[ioffset], nByte / N_SEGMENT, cudaMemcpyHostToDevice, stream[i]));
+		CHECK(cudaMemcpyAsync(&b_d[ioffset], &b_h[ioffset], nByte / N_SEGMENT, cudaMemcpyHostToDevice, stream[i]));
+	}
+
+	for (int i = 0; i < N_SEGMENT; i++) {
+		int ioffset = i * iElem;
+		sumArraysGPU << <grid, block, 0, stream[i] >> > (&a_d[ioffset], &b_d[ioffset], &res_d[ioffset], iElem);
+	}
+
+	for (int i = 0; i < N_SEGMENT; i++) {
+		int ioffset = i * iElem;
+		CHECK(cudaMemcpyAsync(&res_from_gpu_h[ioffset], &res_d[ioffset], nByte / N_SEGMENT, cudaMemcpyDeviceToHost, stream[i]));
+	}
+
+	// timer
+	CHECK(cudaEventRecord(stop, 0));
+	CHECK(cudaEventSynchronize(stop));
+	iElaps = cpuSecond() - iStart;
+	printf("Asynchronous Execution configuration<<<%d,%d>>> Time elapsed %f sec\n", grid.x, block.x, iElaps);
+	checkResult(res_h, res_from_gpu_h, nElem);
+	for (int i = 0; i < N_SEGMENT; i++) {
+		CHECK(cudaStreamDestroy(stream[i]));
+	}
+
+	cudaFree(a_d);
+	cudaFree(b_d);
+	cudaFree(a_h);
+	cudaFree(res_h);
+	cudaFree(res_from_gpu_h);
+	cudaEventDestroy(start);
+	cudaEventDestroy(stop);
+
+	return 0;
+
 }
