@@ -24,6 +24,7 @@
     <ProjectGuid>{2e8a1df5-cee6-493d-b4cf-aff0ef212a8e}</ProjectGuid>
     <RootNamespace>SumArrUniformMemory</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>23_SumArrUniformMemory</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

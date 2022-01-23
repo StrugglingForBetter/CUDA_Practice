@@ -24,6 +24,7 @@
     <ProjectGuid>{5bc7ad59-dab9-4ae3-a173-379593593a36}</ProjectGuid>
     <RootNamespace>GridBlock</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>02_GridBlock</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

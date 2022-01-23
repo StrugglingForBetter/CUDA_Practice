@@ -24,6 +24,7 @@
     <ProjectGuid>{699b5e23-792e-437a-b038-a478b7dbd2b0}</ProjectGuid>
     <RootNamespace>Stencil1DConstReadOnly</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>27_Stencil1DConstReadOnly</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

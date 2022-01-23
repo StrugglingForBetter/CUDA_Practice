@@ -24,6 +24,7 @@
     <ProjectGuid>{d60ccee2-2996-47b3-8ccb-d8057e423146}</ProjectGuid>
     <RootNamespace>SumArraysTimer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>04_SumArraysTimer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -67,7 +67,7 @@ void printMatrix(float* C, const int nx, const int ny) {
 	printf("Matrix<%d,%d>:", ny, nx);
 	for (int i = 0; i < ny; i++) {
 		for (int j = 0; j < nx; j++) {
-			printf("%6f ", C[j]);
+			printf("%6f ", ic[j]);
 		}
 		ic += nx;
 		printf("\n");

@@ -24,6 +24,7 @@
     <ProjectGuid>{70da93f7-0ed3-45f4-9a1b-b54b1d73864c}</ProjectGuid>
     <RootNamespace>MultiAddBreadth</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>36_MultiAddBreadth</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

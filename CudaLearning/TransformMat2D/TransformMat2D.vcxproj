@@ -24,6 +24,7 @@
     <ProjectGuid>{2dd69790-af75-4471-8faf-189b6e6a744c}</ProjectGuid>
     <RootNamespace>TransformMat2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>22_TransformMat2D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

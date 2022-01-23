@@ -27,6 +27,7 @@
     <ProjectGuid>{cdc99ae0-9162-4d56-89ce-f09b00b5eda9}</ProjectGuid>
     <RootNamespace>NestedHelloWorld</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>13_NestedHelloWorld</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

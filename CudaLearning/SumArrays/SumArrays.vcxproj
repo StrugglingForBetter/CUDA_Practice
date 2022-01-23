@@ -24,6 +24,7 @@
     <ProjectGuid>{41bf7f63-5c70-4bd8-9529-c5f706a15415}</ProjectGuid>
     <RootNamespace>SumArrays</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>03_SumArrays</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

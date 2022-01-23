@@ -10,7 +10,7 @@ __global__ void printThreadIndex(float* A, const int nx, const int ny) {
 
 	unsigned int idx = iy * nx + ix;
 	printf("thread_id(%d, %d) block_id(%d, %d) coordinate(%d, %d)"
-		"global index %2d ival %2d\n", threadIdx.x, threadIdx.y,
+		"global index %2d ival %2f\n", threadIdx.x, threadIdx.y,
 		blockIdx.x, blockIdx.y, ix, iy, idx, A[idx]);
 
 }

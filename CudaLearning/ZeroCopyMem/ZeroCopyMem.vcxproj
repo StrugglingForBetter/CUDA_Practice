@@ -24,6 +24,7 @@
     <ProjectGuid>{a9509dc7-282b-444d-b560-34e58ba4618d}</ProjectGuid>
     <RootNamespace>ZeroCopyMem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>16_ZeroCopyMem</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

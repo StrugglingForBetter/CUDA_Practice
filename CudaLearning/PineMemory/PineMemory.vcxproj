@@ -27,6 +27,7 @@
     <ProjectGuid>{c809887c-fc16-40b5-828f-847f54e227a3}</ProjectGuid>
     <RootNamespace>PineMemory</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>15_PineMemory</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

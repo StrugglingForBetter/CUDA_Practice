@@ -24,6 +24,7 @@
     <ProjectGuid>{ffe83b1e-1533-446f-b5c3-5cd3e7348763}</ProjectGuid>
     <RootNamespace>ReduceIntSharedMem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>25_ReduceIntSharedMem</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

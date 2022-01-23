@@ -24,6 +24,7 @@
     <ProjectGuid>{19a22827-62e4-487c-ba01-f969e0648c00}</ProjectGuid>
     <RootNamespace>TransformSharedMem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>26_TransformSharedMem</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

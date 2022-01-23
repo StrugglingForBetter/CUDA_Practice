@@ -27,6 +27,7 @@
     <ProjectGuid>{27162e1c-11ad-44e4-acc8-ed96982d58dd}</ProjectGuid>
     <RootNamespace>ReduceUnrolling</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>12_ReduceUnrolling</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -24,6 +24,7 @@
     <ProjectGuid>{3b85ce15-b1f3-4b10-a2fa-0d2c5ea629c0}</ProjectGuid>
     <RootNamespace>SumMat2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>09_SumMat2D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

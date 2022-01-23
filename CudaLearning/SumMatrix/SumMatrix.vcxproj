@@ -27,6 +27,7 @@
     <ProjectGuid>{1c9ab7c5-d1eb-41a8-a599-3b74d5ee3556}</ProjectGuid>
     <RootNamespace>SumMatrix</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>06_SumMatrix</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

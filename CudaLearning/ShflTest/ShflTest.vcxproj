@@ -24,6 +24,7 @@
     <ProjectGuid>{1a8c8bdf-122f-409e-aa1f-0ad1cf41b630}</ProjectGuid>
     <RootNamespace>ShflTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>28_ShflTest</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

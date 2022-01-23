@@ -24,6 +24,7 @@
     <ProjectGuid>{ba1bddfa-b0ad-43c5-bf23-845535767d57}</ProjectGuid>
     <RootNamespace>ReduceInteger</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>10_ReduceInteger</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

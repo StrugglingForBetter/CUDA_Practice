@@ -24,6 +24,7 @@
     <ProjectGuid>{014cc1ee-379e-4466-8853-c6406a8affb4}</ProjectGuid>
     <RootNamespace>AsyncAPI</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>37_AsyncAPI</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

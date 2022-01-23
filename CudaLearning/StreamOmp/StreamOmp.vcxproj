@@ -27,6 +27,7 @@
     <ProjectGuid>{379ad219-720c-4432-a787-b9bd5ba186b3}</ProjectGuid>
     <RootNamespace>StreamOmp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>31_StreamOmp</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

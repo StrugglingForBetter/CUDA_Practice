@@ -24,6 +24,7 @@
     <ProjectGuid>{b0ba0316-3352-4401-93ed-ad5b26078320}</ProjectGuid>
     <RootNamespace>AoS</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>19_AoS</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

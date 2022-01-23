@@ -24,6 +24,7 @@
     <ProjectGuid>{db712990-897b-4760-98f0-50e9f8e88c89}</ProjectGuid>
     <RootNamespace>ReduceShfl</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>29_ReduceShfl</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

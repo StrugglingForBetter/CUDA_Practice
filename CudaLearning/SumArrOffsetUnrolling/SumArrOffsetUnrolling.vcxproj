@@ -27,6 +27,7 @@
     <ProjectGuid>{08841c24-f1e1-460e-a70e-94b677ea14b1}</ProjectGuid>
     <RootNamespace>SumArrOffsetUnrolling</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>21_SumArrOffsetUnrolling</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

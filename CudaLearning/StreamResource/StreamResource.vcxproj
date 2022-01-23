@@ -24,6 +24,7 @@
     <ProjectGuid>{e63feec5-8fe9-40f0-a1f0-3c0f155233d7}</ProjectGuid>
     <RootNamespace>StreamResource</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>32_StreamResource</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
